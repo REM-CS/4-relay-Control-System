@@ -1,3 +1,19 @@
+# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
+if(WIN32)
+    set(USERHOME $ENV{USERPROFILE})
+else()
+    set(USERHOME $ENV{HOME})
+endif()
+set(sdkVersion 2.2.0)
+set(toolchainVersion 14_2_Rel1)
+set(picotoolVersion 2.2.0-a4)
+set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
+if (EXISTS ${picoVscode})
+    include(${picoVscode})
+endif()
+# ====================================================================================
+set(PICO_BOARD pico CACHE STRING "Board type")
+
 # CMake minimum required version
 cmake_minimum_required(VERSION 3.12)
  
@@ -9,8 +25,8 @@ cmake_minimum_required(VERSION 3.12)
 # set(BOARD_NAME W6100_EVB_PICO)
 # set(BOARD_NAME W6300_EVB_PICO)
 # set(BOARD_NAME W5500_EVB_PICO2)
-# set(BOARD_NAME W6100_EVB_PICO2)
-set(BOARD_NAME W6300_EVB_PICO2)
+set(BOARD_NAME W6100_EVB_PICO2)
+# set(BOARD_NAME W6300_EVB_PICO2)
 
 
 if(${BOARD_NAME} STREQUAL WIZnet_Ethernet_HAT)
@@ -142,7 +158,8 @@ add_compile_options(
         )
 
 # Hardware-specific examples in subdirectories:
-add_subdirectory(examples)
+#add_subdirectory(examples)
+add_subdirectory(control-system)
 
 # Add libraries in subdirectories
 add_subdirectory(${CMAKE_SOURCE_DIR}/libraries)

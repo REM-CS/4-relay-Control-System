@@ -255,3 +255,17 @@ target_include_directories(MULTI_FILES PUBLIC
         ${WIZNET_DIR}/Ethernet
         ${WIZNET_DIR}/Application/multicast
         )
+
+# ping(ICMP) related library files
+add_library(PING_FILES STATIC)
+target_sources(PING_FILES PUBLIC
+        ${WIZNET_DIR}/../PING/ping.c
+)
+target_include_directories(PING_FILES INTERFACE
+        ${WIZNET_DIR}
+        ${WIZNET_DIR}/../PING
+)
+target_link_libraries(PING_FILES PRIVATE
+        ETHERNET_FILES
+        pico_stdlib
+)
